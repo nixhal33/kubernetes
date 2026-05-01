@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: bankapp.devops.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bank-service-bankapp # Your app service name set in service.yml file
+                port:
+                  number: 8080 # your app port no on which the app runs this is java app so java port no
+
+    - host: myecom.com.np
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mycommerce-ecommerce-site # your app service name
+                port:
+                  number: 80 # app port no.

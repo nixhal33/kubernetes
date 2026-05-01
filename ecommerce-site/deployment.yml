@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-site
+  template:
+    metadata:
+      labels:
+        app: ecommerce-site
+    spec:
+      containers:
+        - name: ecommerce-site
+          image: kubenix/ecommerce-site:v1.0.3
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "5m"
+              memory: "10Mi"
+            limits:
+              cpu: "30m"
+              memory: "30Mi"

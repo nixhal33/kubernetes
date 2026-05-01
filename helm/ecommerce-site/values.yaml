@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: kubenix/ecommerce-site
   pullPolicy: Always
-  tag: "v1.0.3"
+  tag: "71b7427"
 
 resources:
   requests:

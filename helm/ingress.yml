@@ -2,28 +2,36 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
+  namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/subnets: subnet-077009405609b18af, subnet-021e1938db781a718, subnet-00a429dad63882445
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/healthcheck-port: "80"
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
 spec:
   rules:
-    - host: bankapp.devops.com
+    - host: ecom.44.195.10.98.nip.io
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: bank-service-bankapp # Your app service name set in service.yml file
+                name: ecom-ecommerce-site
                 port:
-                  number: 8080 # your app port no on which the app runs this is java app so java port no
+                  number: 80
 
-    - host: myecom.com.np
+    - host: pikachu.44.195.10.98.nip.io
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: mycommerce-ecommerce-site # your app service name
+                name: pikachu-pokemonapp
                 port:
-                  number: 80 # app port no.
+                  number: 80
+
